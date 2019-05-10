@@ -99,10 +99,10 @@ func installPackages(c *cli.Context) error {
 	if data == nil {
 		return errors.New("\u001b[31m" + "There are no packages to install.")
 	}
-	stdOutput, err := cmd.CombinedOutput()
 	for _, entry := range data {
 		cmd = exec.Command("go", "get", entry.Name)
 	}
+	stdOutput, err := cmd.CombinedOutput()
 	fmt.Println(string(stdOutput))
 	if err != nil {
 		os.Stderr.WriteString(err.Error())
